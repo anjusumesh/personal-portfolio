@@ -17,31 +17,6 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Theme toggle (persisted)
-const themeToggle = document.getElementById('themeToggle');
-const root = document.documentElement;
-
-function applyTheme(theme) {
-  if (theme === 'light') {
-    root.setAttribute('data-theme', 'light');
-    themeToggle.textContent = '☀️';
-  } else {
-    root.removeAttribute('data-theme');
-    themeToggle.textContent = '🌙';
-  }
-}
-
-const saved = localStorage.getItem('theme');
-const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-applyTheme(saved || (prefersLight ? 'light' : 'dark'));
-
-themeToggle.addEventListener('click', () => {
-  const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-  const next = current === 'light' ? 'dark' : 'light';
-  applyTheme(next);
-  localStorage.setItem('theme', next);
-});
-
 // Reveal-on-scroll for sections
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
